@@ -1,0 +1,14 @@
+.footer {
+	min-height: 35vh;
+	background: #030027;
+	color: #7ea8be;
+	align-items: flex-end;
+	display: flex;
+	font-size: 20px;
+	justify-content: space-evenly;
+	padding-bottom: 30px;
+}
+.footer__label {
+	cursor: pointer;
+}
+ 

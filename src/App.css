@@ -1,0 +1,11 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: "Poppins", sans-serif;
+
+	/* font-family: "Work Sans", sans-serif; */
+}
+.App__body {
+	min-height: 88vh;
+	background: #f1dede;
+}

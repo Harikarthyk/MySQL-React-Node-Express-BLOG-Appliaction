@@ -1,0 +1,64 @@
+.user {
+	width: 80%;
+	margin: auto;
+	padding: 20px 0;
+}
+
+.user__name {
+	display: flex;
+	font-size: 30px;
+	border-bottom: 5px solid #964371;
+	border-radius: 4px;
+	padding: 20px 0;
+	margin-bottom: 20px;
+}
+
+.user__name__label {
+	background: #030027;
+	margin-left: 15px;
+	padding: 3px;
+	font-size: 18px;
+	display: flex;
+	color: white;
+	align-items: center;
+	font-weight: bolder;
+	padding: 0 22px;
+	border-radius: 46px;
+}
+
+.user select {
+	width: 100%;
+	padding: 7px;
+	color: white;
+	font-size: 15px;
+	background: #964371;
+	border-radius: 12px;
+	font-weight: bold;
+}
+
+.userInfo {
+	margin: 20px 0;
+}
+
+.userInfo__name {
+	margin: 10px 0;
+}
+
+.userInfo__change {
+	font-style: italic;
+	margin: 20px 0;
+	text-decoration: underline;
+	font-size: small;
+}
+
+@media (max-width: 600px) {
+	.user {
+		width: 92%;
+	}
+	.user__name {
+		font-size: 25px;
+	}
+	.user__name__label {
+		font-size: 15px;
+	}
+}

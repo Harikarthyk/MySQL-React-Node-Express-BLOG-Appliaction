@@ -1,0 +1,19 @@
+.favourite {
+	margin: auto;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.favourite__heading {
+	text-align: center;
+	font-size: xx-large;
+	margin: 20px 0;
+	border-bottom: 3px solid #984472;
+}
+.loading {
+	text-align: "center";
+	margin: "10px 0";
+}

@@ -1,0 +1,45 @@
+form.addpost {
+	margin: auto;
+	width: 92%;
+	padding: 20px 0;
+}
+
+.addpost__input {
+	margin: 20px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.addpost__label {
+	margin: 10px 0;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+textarea.addpost__heading {
+	border: 1px solid #c3bbbb;
+	width: 90%;
+
+	padding: 12px;
+	font-size: 16px;
+	height: 100px;
+}
+
+textarea.addpost__value {
+	padding: 12px;
+	font-size: 16px;
+	width: 90%;
+	border: 1px solid #c3bbbb;
+	height: 450px;
+}
+
+button {
+	padding: 5px 20px;
+	font-weight: bolder;
+	border-radius: 5px;
+	border: 1px solid #c3bbbb;
+	background: #a14a76;
+	cursor: pointer;
+	color: white;
+}
