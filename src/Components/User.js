@@ -3,15 +3,14 @@ import "./User.css";
 import UserContext from "../UserContext";
 import {Link, Redirect} from "react-router-dom";
 import {getUserInfoFromDB} from "../Helper/user";
-import {getBlogInfoByBlogId} from "../Helper/blog";
-import {FaRegThumbsDown, FaRegThumbsUp} from "react-icons/fa";
+import {getBlogInfoByBlogId, deleteBlogByBlogId} from "../Helper/blog";
+import {FaRegThumbsDown, FaRegThumbsUp, FaTrash} from "react-icons/fa";
 
 function User() {
 	const context = useContext(UserContext);
 
 	const {stateUser} = context;
 	const [blogs, setBlogs] = useState([]);
-	const [option, setOption] = useState("Info");
 	const [user, setUser] = useState("");
 	const [loading, setLoading] = useState(true);
 	//Get all blogs by the user ;
@@ -33,6 +32,9 @@ function User() {
 	};
 
 	useEffect(() => {
+		getUserBlogInfo();
+	}, []);
+	const getUserBlogInfo = () => {
 		if (stateUser)
 			getUserInfoFromDB(stateUser.user_id)
 				.then((result) => {
@@ -44,7 +46,7 @@ function User() {
 					getBlogInfo(result.user);
 				})
 				.catch((error) => console.error(error));
-	}, []);
+	};
 	if (!stateUser) return <Redirect to='/' />;
 	const userInfo = () => {
 		return (
@@ -63,6 +65,20 @@ function User() {
 			</div>
 		);
 	};
+
+	const handleDeleteBlog = (blogId) => {
+		setLoading(true);
+		deleteBlogByBlogId(blogId)
+			.then((result) => {
+				console.log(result);
+				alert(result.message);
+				setLoading(false);
+				getUserBlogInfo();
+				window.location.reload(false);
+			})
+			.catch((error) => console.error(error));
+	};
+
 	const yourPost = () => {
 		return (
 			<div className='yourpost'>
@@ -71,12 +87,13 @@ function User() {
 				<div className='home__body__blog'>
 					{blogs.map((blog) => {
 						return (
-							<Link
-								to={`/view/blog/${blog.blog_id}`}
-								className='blog'
-								key={blog.blog_id}
-							>
-								<div className='blog__heading'>{blog.heading}</div>
+							<div className='blog' key={blog.blog_id}>
+								<Link
+									to={`/view/blog/${blog.blog_id}`}
+									className='blog__heading'
+								>
+									{blog.heading}
+								</Link>
 								<div className='blog__content'>
 									{blog.value.substring(0, 140)}...
 								</div>
@@ -87,15 +104,17 @@ function User() {
 									<div className='blog__label__likes'>
 										<FaRegThumbsDown /> {blog.dislikes.length}
 									</div>
-									{/* <div className='blog__label__likes'>
-										<FaRegComment /> 0
-									</div> */}
 								</div>
-							</Link>
+								<div
+									onClick={() => handleDeleteBlog(blog.blog_id)}
+									className='blog__delete'
+								>
+									Delete Blog <FaTrash />
+								</div>
+							</div>
 						);
 					})}
 				</div>
-				{console.log(blogs)}
 			</div>
 		);
 	};
@@ -104,11 +123,8 @@ function User() {
 			<div className='user__name'>
 				Welcome <div className='user__name__label'>{stateUser.name}</div>
 			</div>
-			<select onChange={(e) => setOption(e.target.value)}>
-				<option value='Info'>User Info</option>
-				<option value='YourPost'>Your Post</option>
-			</select>
-			{option === "Info" ? userInfo() : yourPost()}
+			{userInfo()}
+			{yourPost()}
 		</div>
 	);
 }

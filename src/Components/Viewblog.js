@@ -353,7 +353,7 @@ function Viewblog() {
 					)}
 				</div>
 			) : (
-				""
+				<div>{loading ? <div className='loading'>Loading...</div> : ""}</div>
 			)}
 		</React.Fragment>
 	);
